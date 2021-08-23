@@ -1,0 +1,51 @@
+Three way partitioning
+*********************
+
+ void threeWayPartition(vector<int>& arr,int a, int b)
+    {
+        // code here 
+        int p1 = 0;
+        int p2 = arr.size()-1;
+
+        int n = p2;
+  
+  while(p1<n){
+      if(arr[p1]<a){
+          p1++;
+      }else{
+          break;
+      }
+  }
+  
+  while(p2>=0){
+      if(arr[p2]>b){
+          p2--;
+      }else{
+          break;
+      }
+  }
+  
+  
+  int t = p1;
+  
+  while(t<=p2){
+      int ele = arr[t];
+      
+      if(ele<a){
+          arr[t] = arr[p1];
+          arr[p1] = ele;
+          p1++;
+          t++;
+      }
+      else if(ele>b){
+          arr[t] = arr[p2];
+          arr[p2] = ele;
+          p2--;
+      }else{
+          t++;
+      }
+      
+      
+  }
+        
+    }
