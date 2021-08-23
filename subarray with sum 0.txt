@@ -1,0 +1,27 @@
+ subarray with sum 0
+ *******************
+bool subArrayExists(int arr[], int n)
+    {
+        //Your code here
+        unordered_map<int,int> map;
+        map[arr[0]] = 0;
+        
+        for(int i=1;i<n;i++){
+            arr[i] = arr[i]+arr[i-1];
+            if(arr[i]==0)
+               return true;
+            if(map.count(arr[i])==0){
+                map[arr[i]] = 0;
+            }else{
+                map[arr[i]] = map[arr[i]]+1;
+            }
+        }
+        
+        
+         for (auto i = map.begin(); i != map.end(); i++){
+             if(i->second>0)
+              return true;
+         }
+        
+        return false;
+    }
