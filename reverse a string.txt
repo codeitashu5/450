@@ -1,0 +1,21 @@
+Recverse a str
+**************
+
+string reverseWord(string str){
+  //Your code here
+  int i=0,j=str.size()-1;
+  
+  while(i<=j){
+      
+      char ele = str[i];
+      str[i] = str[j];
+      str[j] = ele;
+      
+      i++;
+      j--;
+      
+  }
+  
+  return str;
+  
+}
