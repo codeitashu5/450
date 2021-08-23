@@ -1,0 +1,38 @@
+Longest consecutive subsequence
+******************************
+
+ int findLongestConseqSubseq(int arr[], int n)
+    {
+      //Your code here
+      int max = 0;
+      for(int i=0;i<n;i++){
+          if(arr[i]>max)
+            max = arr[i];
+      }    
+      vector<int> v(max+1,-1);
+      
+      for(int i=0;i<n;i++){
+          v[arr[i]] = arr[i];
+      }    
+      int count = 0;
+      max = 0;
+      
+      for(int i=0;i<v.size();i++){
+          if(v[i]!=-1){
+              count++;
+          }else{
+              if(count>max){
+                  max = count;
+              }
+               count=0;
+          }
+      }
+      
+      
+      if(count>max){
+          max = count;
+      }
+     
+      return max;
+      
+    }
