@@ -1,0 +1,21 @@
+ Array subset of another array
+*******************************
+
+
+string isSubset(int a1[], int a2[], int n, int m) {
+    
+    unordered_map<int,int> map;
+    
+    for(int i = 0;i<n;i++){
+        map[a1[i]] = 0;
+    }
+    
+    for(int i=0;i<m;i++){
+        if(map.count(a2[i])==0){
+            return "No";
+        }
+    }
+    
+    return "Yes";
+    
+}
