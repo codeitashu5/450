@@ -1,0 +1,26 @@
+
+ minimum no of jumps recursive
+*******************************
+int minJumps(int arr[], int n){
+        // Your code here
+        if(arr[0]>=n-1)
+          return 1;
+        
+        if(arr[0]==0)
+          return -1;
+          
+        int m = INT_MAX;
+       
+        for(int i=1;i<=arr[0];i++){
+            int temp =  minJumps(arr+i,n-i);
+            if(temp!=-1){
+                if(temp<m)
+                  m = temp;
+            }
+        } 
+        
+        if(m == INT_MAX)
+          return -1;
+        else
+          return m+1;
+    }
