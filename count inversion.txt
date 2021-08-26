@@ -1,0 +1,61 @@
+  Function to count inversions in the array
+ *******************************************
+    
+ long long count = 0;
+    long long merge(long long arr[],long long s,long long m,long long e){
+        vector<long long> v;
+        long long i = s,j = m+1;
+        
+     while(i<=m||j<=e){
+            //if both exist
+            if(i<=m&&j<=e){
+                if(arr[i]<arr[j]){
+                    v.push_back(arr[i]);
+                    i++;
+                }
+                else if(arr[j]<arr[i]){
+                    v.push_back(arr[j]);
+                    count=count+(m-i+1);
+                    j++;
+                }
+                else{
+                     v.push_back(arr[i]);
+                     i++;
+                }
+            }
+            else if(i>m){
+                v.push_back(arr[j]);
+                j++;
+            }
+            else{
+                 v.push_back(arr[i]);
+                 i++;
+            }
+        }
+        for(long long k =0;k<v.size();k++) {
+            arr[k] = v[k];
+        }
+    }
+    
+   void merge_sort(long long arr[],long long n){
+       if(n<=1){
+           return;                                                                                                                                                                     
+       }
+       long long start = 0;
+       long long mid = n/2-1;
+       long long end = n-1;
+       
+       merge_sort(arr,n/2);
+       merge_sort(arr+(n/2),(n)-(n/2));
+      merge(arr,start,mid,end);
+         
+   }
+    
+    
+    long long int inversionCount(long long arr[], long long n)
+    {
+        //doned using the merge sort algo
+         
+         merge_sort(arr,n);
+         return count;
+    }
