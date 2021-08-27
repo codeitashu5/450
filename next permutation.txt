@@ -1,0 +1,42 @@
+Next permutation
+****************
+
+void nextPermutation(vector<int>& v) {
+        
+        for(int i=v.size()-2;i>=0;i--){
+            
+         int initial = i+1;   
+         int no = v[initial-1];
+         int index = -1;
+         int m = INT_MAX;
+         for(int j=initial;j<v.size();j++){
+               if(v[j]>no&&v[j]<=m){
+                   m = v[j];
+                   index = j;
+               }
+         }
+         
+         if(index == -1)
+           continue;
+         else{
+             
+            int temp = v[initial-1];
+            v[initial-1] = v[index];
+            v[index] = temp;
+             
+             //sort the vector from intial to end
+             int i=initial,j=v.size()-1;
+             while(i<j){
+                 int temp = v[i];
+                 v[i] = v[j];
+                 v[j] = temp; 
+                 i++;
+                 j--;
+             }   
+             return;
+           
+        }
+         
+    }
+    sort(v.begin(), v.end());
+}
