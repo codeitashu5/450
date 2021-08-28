@@ -1,0 +1,40 @@
+
+
+ Merge Intervals
+*****************
+
+vector<vector<int>> merge(vector<vector<int>>& intervals) {
+        //it gets sorted coloum wise according to the first coloum
+        sort(intervals.begin(), intervals.end()); 
+        
+        int s = intervals[0][0];
+        int e = intervals[0][1];
+
+            
+            int m = e;
+        
+        vector<vector<int>> v;
+
+        for(int i=1;i<intervals.size();i++){
+            if(intervals[i][0]<=e){
+               if(intervals[i][1]>e)
+                   e = intervals[i][1];
+            }
+            else{
+                vector<int> temp;
+                temp.push_back(s);
+                temp.push_back(e);
+                v.push_back(temp); 
+                
+                s = intervals[i][0];
+                e = intervals[i][1];
+            }
+        }
+        
+                vector<int> temp;
+                temp.push_back(s);
+                temp.push_back(e);
+                v.push_back(temp); 
+             
+        return v;
+    }
