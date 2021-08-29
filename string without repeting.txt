@@ -1,0 +1,36 @@
+Length of the longest substring 
+*******************************
+
+TLE
+****
+int longestUniqueSubsttr(string s){
+        //code
+        unordered_map<char,int> repeted;
+        int i,j;
+        i=j=0;
+        int sol = 0;
+    
+        while(j<s.size()){
+            if(repeted.count(s[j])==0){
+                repeted[s[j]] = j;
+                
+                if(j==s.size()-1){
+                     int len = j-i+1;
+                     sol = max(sol,len);
+                }
+                
+                j++;
+            }
+            else{
+               int len = j-i;
+               sol = max(sol,len);
+               i = repeted[s[j]] + 1;
+               repeted.clear();
+               j=i;
+            }
+        
+        }
+        
+        
+        return sol;
+    }
