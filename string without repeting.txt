@@ -34,3 +34,37 @@ int longestUniqueSubsttr(string s){
         
         return sol;
     }
+
+ Optimal soluation
+*******************
+
+int longestUniqueSubsttr(string s){
+        //code without repeting character at any time
+        unordered_map<char,int> repeted;
+        int i,j;
+        i=j=0;
+        int sol = 0;
+    
+        while(j<s.size()){
+            if(repeted.count(s[j])==0){
+                repeted[s[j]] = j;
+            }
+            else{
+                //it has occured before i
+                if(repeted[s[j]]<i){
+                    repeted[s[j]] = j;
+                }
+                //we do it whether it is before i or aft\er it
+                else{
+                    sol = max(sol,j-i);
+                    i = repeted[s[j]]+1;
+                    repeted[s[j]] = j;
+                }
+                
+            }
+            j++;
+        
+        }
+        
+        return max(sol,j-i);
+    }
