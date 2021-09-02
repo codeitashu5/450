@@ -1,0 +1,26 @@
+ Longest Repeting subsequence
+****************************** 
+
+
+int LongestRepeting(string s1 , string s2)
+     {
+         if(s1.length()==0||s2.length()==0)
+           return  0;
+           
+         if(s1[0]==s2[0]&&s1.length()!=s2.length()){
+             return 1 + LongestRepeting(s1.substr(1),s2.substr(1));
+         }
+    
+         int a = LongestRepeting(s1.substr(1),s2);
+         int b = LongestRepeting(s1,s2.substr(1));
+         
+         return max(a,b);
+         
+         
+     }	
+	
+  	
+		int LongestRepeatingSubsequence(string str){
+		    // Code here
+		    return LongestRepeting(str,str);
+		}
