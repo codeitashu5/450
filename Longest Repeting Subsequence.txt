@@ -1,8 +1,6 @@
  Longest Repeting subsequence
 ****************************** 
-
-
-int LongestRepeting(string s1 , string s2)
+  int LongestRepeting(string s1 , string s2)
      {
          if(s1.length()==0||s2.length()==0)
            return  0;
@@ -14,13 +12,49 @@ int LongestRepeting(string s1 , string s2)
          int a = LongestRepeting(s1.substr(1),s2);
          int b = LongestRepeting(s1,s2.substr(1));
          
-         return max(a,b);
-         
+         return max(a,b);  
          
      }	
 	
-  	
-		int LongestRepeatingSubsequence(string str){
+  int LongestRepeatingSubsequence(string str){
+     // Code here
+     return LongestRepeting(str,str);
+  }
+
+ Dyanamic approch
+*******************
+
+	int LongestRepeatingSubsequence(string str){
+
 		    // Code here
-		    return LongestRepeting(str,str);
+		    //return LongestRepeting(str,str);
+		    int n = str.length();
+		    
+		    int ** arr = new int*[n+1];
+		    
+		    for(int i=0;i<=n;i++){
+		        arr[i] = new int[n+1];
+		    }
+		    
+		    
+		    for(int i=0;i<=n;i++){
+		        arr[0][i] = 0;
+		        arr[i][0] = 0;
+		    }
+		    
+		    
+		    
+		    for(int i=1;i<=n;i++){
+		        for(int j=1;j<=n;j++){
+		            if(str[n-(i)]==str[n-(j)] && i!=j){
+		                arr[i][j] = 1+arr[i-1][j-1];
+		            }
+		            else{
+		                arr[i][j] = max(arr[i-1][j],arr[i][j-1]);
+		            }
+		        }
+		    }
+		    
+		    return arr[n][n];
+		    
 		}
