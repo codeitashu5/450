@@ -1,0 +1,46 @@
+ Second most repeated string in a sequence 
+*******************************************
+
+
+string secFrequent (string arr[], int n)
+    {
+        unordered_map<string,int> repeted;
+        
+        for(int i=0;i<n;i++){
+            if(repeted.count(arr[i])==0)
+                repeted[arr[i]] = 1;
+            else
+                repeted[arr[i]]+=1;
+        }
+    
+        unordered_map<string, int>::iterator it , m1 , m2;
+        it = repeted.begin();
+        
+        int max = it->second;
+        string str_max = it->first;
+        
+        int second_max = INT_MIN;
+        string str_second_max  = "";
+       
+      
+        while(it!=repeted.end()){
+           if(it->second>max){
+               second_max = max;
+               str_second_max = str_max;
+               
+               max = it->second;
+               str_max = it->first;
+           }
+           
+           else if(it->second<max){
+               if(it->second>second_max){
+                   second_max = it->second;
+                   str_second_max = it->first;
+               }
+           }
+            
+            it++;
+        }
+        
+        return str_second_max;
+    }
