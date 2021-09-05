@@ -1,0 +1,29 @@
+ Roman Number to Integer 
+*************************
+
+ int romanToDecimal(string &str) {
+        int n = str.length()-1;
+        unordered_map<char,int> value;
+        value['I'] = 1;
+        value['V'] = 5;
+        value['X'] = 10;
+        value['L'] = 50;
+        value['C'] = 100;
+        value['D'] = 500;
+        value['M'] = 1000;
+        
+        int result = value[str[n]];
+        int i = n;
+        while(i>0){
+        
+            if(value[str[i-1]]>=value[str[i]])
+             result+=value[str[i-1]];
+            else{
+                result-=value[str[i-1]];
+            }
+            i--;
+            
+        }
+        
+        return result;
+    }
