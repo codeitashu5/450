@@ -1,0 +1,55 @@
+ Smallest window in a string containing all the characters of another string
+*****************************************************************************
+   string smallestWindow (string s, string p)
+    {
+        //optimizing the function calls and the hash_map for better performance
+        int i = 0;
+        int j = 0;
+        int start = -1;
+        int ch_repeted[256] = {0};
+        int m = p.size();
+        int n = s.size();
+        int count = 0;
+        int minimum = INT_MAX;
+        for(int i=0;i<m;i++){
+            if(ch_repeted[p[i]]==0)
+              count++;
+              
+           ch_repeted[p[i]]++;
+           
+        }
+        
+        //starting with this one only
+        
+        while(j<n){
+            
+               ch_repeted[s[j]] = ch_repeted[s[j]] - 1;
+               
+               if(ch_repeted[s[j]]==0){
+                   count--;
+                   if(count==0){
+                      while(count==0){
+                             ch_repeted[s[i]] = ch_repeted[s[i]] + 1;
+                
+                             if(ch_repeted[s[i]]>0){
+                                 count++;
+                                 
+                                 if(minimum>j-i+1){
+                                     start = i;
+                                     minimum = j-i+1;
+                                 }
+                             }
+                           i++;  
+                         }
+                           
+                      } 
+                   }
+           
+           j++;
+        }
+        
+      if(start == -1)
+       return "-1";
+       else
+        return s.substr(start,minimum);
+    }

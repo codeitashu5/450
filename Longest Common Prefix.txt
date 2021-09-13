@@ -1,5 +1,4 @@
- Longest Common Prefix
-*********************** 
+ 
 
 string longestCommonString(string s1 , string s2){
         int m = min(s1.size(),s2.size());
