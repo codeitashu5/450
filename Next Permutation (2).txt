@@ -1,0 +1,55 @@
+ Next Permutation
+******************
+
+void reverseNo(int start , int  end , vector<int> & arr){
+      while(start<end){
+          int temp = arr[start];
+          arr[start] = arr[end];
+          arr[end] = temp;
+          
+          start++;
+          end--;
+      }  
+      
+   }
+   
+    //so that the changes are reflected
+    vector<int> nextPermutation(int n, vector<int> &arr){
+        // code here
+        int j = n-1;
+        int pos = -1;
+        while(j>0){
+            if(arr[j-1]<arr[j]){
+                pos = j-1;
+                break;
+            }
+            j--;
+        }
+        
+        
+        //find the part to swap with
+        if(pos == -1){
+           reverseNo(0,n-1,arr); 
+        }
+        else{
+            //postion to which it is swaped
+            int min_pos = pos+1;
+            
+            for(int i = pos+2; i<n ;i++){
+                if(arr[i]>arr[pos] && arr[i]<arr[min_pos]){
+                    min_pos = i;
+                }
+            }
+            
+           int temp =  arr[pos];
+           arr[pos] = arr[min_pos];
+           arr[min_pos] = temp;
+           
+           //reverse the respective string form pos+1 to n-1
+           reverseNo(pos+1,n-1,arr);
+        }
+        
+        return arr;
+    }
+
+
