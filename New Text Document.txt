@@ -1,0 +1,27 @@
+ Print Anagrams Together 
+*************************
+ vector<vector<string> > Anagrams(vector<string>& string_list) {
+        //code here
+       
+        unordered_map<string,int> newT;
+        vector<vector<string>> trayes;
+        int c = 0;
+        int n = string_list.size();
+        for(int i=0;i<n;i++){
+            string s = string_list[i];
+            sort(s.begin(),s.end());
+            if(newT.count(s)==0){
+                newT[s] = c;
+                //create a tray
+                vector<string> v;
+                trayes.push_back(v);
+                trayes[c].push_back(string_list[i]);
+                c++;
+            }
+            else{
+                trayes[newT[s]].push_back(string_list[i]);
+            }
+        }
+        
+        return trayes;
+    }
