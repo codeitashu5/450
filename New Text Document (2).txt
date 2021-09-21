@@ -1,0 +1,29 @@
+ Dams of candies
+*****************
+
+int maxCandy(int arr[], int n) { 
+         Your code goes here
+        int i = 0;
+        int j = n-1;
+        
+        int mex = INT_MIN;
+        
+        if(j==0)
+         return 0;
+        
+        while(ij){
+            int hight = min(arr[i],arr[j]);
+            int candi = hight(j-i-1);
+            
+            if(candimex)
+             mex = candi;
+             
+             if(arr[i]arr[j])
+               j--;
+             else
+                i++;
+               
+        }
+        
+        return mex;
+    }   

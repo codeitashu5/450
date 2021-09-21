@@ -1,0 +1,39 @@
+ Word Break
+************
+
+
+bool wordBreaks(string a , unordered_map<string,int> m){
+       
+       if(m.count(a)!=0)
+         return true;
+         
+    
+        //we will start puting space in places we want to
+        for(int i=1;i<a.size();i++){
+            if(m.count(a.substr(0,i))!=0){
+                if(wordBreaks(a.substr(i),m)==true)
+                 return true;
+            }
+        }
+       
+       return false;
+   }
+
+
+
+    int wordBreak(string A, vector<string> &B) {
+        //put it in a unordered map so it can be founded way easly
+        unordered_map<string,int> map;
+        
+        for(int i = 0;i<B.size();i++){
+            if(map.count(B[i])==0)
+             map[B[i]] = 1;
+            else{
+                map[B[i]] = map[B[i]]++;
+            }
+        }
+        
+        
+       return  wordBreaks(A, map);
+
+    }
